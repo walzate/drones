@@ -42,14 +42,14 @@ public class OperadorDronTest {
     }
 
     /**
-     *
+     * Método para establecimiento inicial de variables a nivel de caso de prueba
      */
     @Before
     public void setUp() {
     }
 
     /**
-     *
+     * Método para cerrado de variables a nivel de caso de prueba
      */
     @After
     public void tearDown() {
@@ -136,7 +136,10 @@ public class OperadorDronTest {
     }
 
     /**
-     * Test of leerYProcesarIndicaciones method, of class OperadorDron.
+     * Prueba completa de las tres entregas, se lee del archivo inTest.txt y se
+     * escribe en el archivo outTest.txt. En este caso se evalúa la concordancia
+     * con las entradas y salidas propuestas por el enunciado. Dado que en el caso
+     * 2 y 3 se considera que son erradas por eso la prueba falla.
      */
     @Test
     public void testLeerIndicacionesEnunciadoErroneo() {
@@ -153,7 +156,10 @@ public class OperadorDronTest {
     }
 
     /**
-     * Test of leerYProcesarIndicaciones method, of class OperadorDron.
+     * Prueba completa con las tres entregas del dron, se lee de archivo inTest.txt y se
+     * escribe en el archivo outTest.txt. En este caso se toman las salidas
+     * que se consideran correctas en contraposición de lo que el enunciado 
+     * establece.
      */
     @Test
     public void testLeerIndicaciones() {
