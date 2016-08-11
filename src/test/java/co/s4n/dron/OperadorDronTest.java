@@ -142,7 +142,7 @@ public class OperadorDronTest {
      * 2 y 3 se considera que son erradas por eso la prueba falla.
      */
     @Test
-    public void testLeerIndicacionesEnunciadoErroneo() {
+    public void testLeerYProcesarIndicacionesEnunciadoErroneo() {
         LOGGER.info("operarTercerDomicilio");
         Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
         Dron dron = new Dron(posicion);
@@ -162,7 +162,7 @@ public class OperadorDronTest {
      * establece.
      */
     @Test
-    public void testLeerIndicaciones() {
+    public void testLeerYProcesarIndicaciones() {
         LOGGER.info("operarTercerDomicilio");
         Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
         Dron dron = new Dron(posicion);
