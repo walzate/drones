@@ -64,7 +64,7 @@ public class Dron {
     }
 
     /**
-     * Método que dada la posición del Dron realiza un giro de 90 grados hacia 
+     * Método que dada la posición del Dron realiza un giro de 90 grados hacia
      * la derecha
      *
      * @param posicion La posición inicial del Dron
@@ -87,7 +87,7 @@ public class Dron {
     }
 
     /**
-     * Método que dada la posición del Dron realiza un giro de 90 grados hacia 
+     * Método que dada la posición del Dron realiza un giro de 90 grados hacia
      * la izquierda
      *
      * @param posicion La posición inicial del Dron
@@ -107,11 +107,11 @@ public class Dron {
                 posicion.setOrientacionEnum(OrientacionEnum.ORIENTE);
                 break;
         }
-    }   
+    }
 
     /**
-     * Método que sobreescribe la comparación entre drones para ahora
-     * comparar por el estado del objeto.
+     * Método que sobreescribe la comparación entre drones para ahora comparar
+     * por el estado del objeto.
      *
      * @param obj El objeto con el cual se va a comparar
      * @return true si los objetos tienen el mismo estado, false en caso
@@ -134,6 +134,5 @@ public class Dron {
         }
         return true;
     }
-    
-    
+
 }

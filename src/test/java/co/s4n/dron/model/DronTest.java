@@ -15,16 +15,17 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * Clase con las pruebas unitarias para el dron.
  *
- * @author fawkes
+ * @author Wilson Alzate Calderón
  */
 public class DronTest {
-    
+
     /**
      * Instancia del Logger para almacenar la bitácora
      */
     final static Logger LOGGER = Logger.getLogger(DronTest.class);
-    
+
     /**
      * Constructor de la clase
      */
@@ -46,7 +47,8 @@ public class DronTest {
     }
 
     /**
-     * Método para establecimiento inicial de variables a nivel de caso de prueba
+     * Método para establecimiento inicial de variables a nivel de caso de
+     * prueba
      */
     @Before
     public void setUp() {
@@ -57,7 +59,7 @@ public class DronTest {
      */
     @After
     public void tearDown() {
-    }  
+    }
 
     /**
      * Test of moverAdelante method, of class Dron.
@@ -82,7 +84,7 @@ public class DronTest {
         Posicion posicionEsperada = new Posicion(0, 0, OrientacionEnum.ORIENTE);
         Dron dron = new Dron(posicion);
         dron.girarALaDerecha(posicion);
-        assertEquals(posicion, posicionEsperada);        
+        assertEquals(posicion, posicionEsperada);
     }
 
     /**
@@ -95,7 +97,7 @@ public class DronTest {
         Posicion posicionEsperada = new Posicion(0, 0, OrientacionEnum.OCCIDENTE);
         Dron dron = new Dron(posicion);
         dron.girarALaIzquierda(posicion);
-        assertEquals(posicion, posicionEsperada);        
+        assertEquals(posicion, posicionEsperada);
     }
-    
+
 }
