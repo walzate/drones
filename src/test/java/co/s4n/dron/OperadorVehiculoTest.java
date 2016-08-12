@@ -5,6 +5,7 @@ import co.s4n.dron.model.impl.Posicion;
 import co.s4n.dron.model.impl.Dron;
 import co.s4n.dron.enums.OrientacionEnum;
 import co.s4n.dron.exception.CapacidadAlmuerzosException;
+import co.s4n.dron.exception.MovimientoErroneoException;
 import co.s4n.dron.exception.NumeroCuadrasALaRedondaException;
 import co.s4n.dron.model.Vehiculo;
 import org.apache.log4j.Logger;
@@ -266,6 +267,22 @@ public class OperadorVehiculoTest {
             operadorDron.leerYProcesarIndicaciones("inCapacidadExcedida.txt", "outTest.txt");
         } catch (Exception e) {
             assertTrue(e instanceof CapacidadAlmuerzosException);
+        }
+    }
+    
+    /**
+     * Prueba para validar que el movimiento ingresado sea A, I o D
+     */
+    @Test
+    public void testMovimientoErroneo() {
+        LOGGER.info("testMovimientoErroneo");
+        try {
+            Posicion posicion = new Posicion(0, 2, OrientacionEnum.NORTE);
+            Vehiculo dron = new Dron(posicion);
+            OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
+            operadorDron.operar("H");
+        } catch (Exception e) {
+            assertTrue(e instanceof MovimientoErroneoException);
         }
     }
 
