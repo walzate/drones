@@ -1,5 +1,5 @@
-# drones
-Aplicación para solucionar la prueba Técnica para S4N.
+# Drones para domicilios.
+Aplicación para solucionar la prueba Técnica JVM para la empresa S4N.
 # Nombres
 Wilson Alzate Calderón
 # Instrucciones de ejecución
