@@ -1,4 +1,4 @@
-package co.s4n.dron.model;
+package co.s4n.dron.model.impl;
 
 import co.s4n.dron.enums.OrientacionEnum;
 

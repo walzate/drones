@@ -1,13 +1,14 @@
-package co.s4n.dron.model;
+package co.s4n.dron.model.impl;
 
 import co.s4n.dron.enums.OrientacionEnum;
+import co.s4n.dron.model.Vehiculo;
 
 /**
  * Clase que representa un Dron.
  *
  * @author Wilson Alzate Calderón
  */
-public class Dron {
+public class Dron implements Vehiculo{
 
     /**
      * La posición en la cual se encuentra el Dron

@@ -5,6 +5,8 @@
  */
 package co.s4n.dron.model;
 
+import co.s4n.dron.model.impl.Posicion;
+import co.s4n.dron.model.impl.Dron;
 import co.s4n.dron.enums.OrientacionEnum;
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -69,7 +71,7 @@ public class DronTest {
         System.out.println("moverAdelante");
         Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
         Posicion posicionEsperada = new Posicion(0, 1, OrientacionEnum.NORTE);
-        Dron dron = new Dron(posicion);
+        Vehiculo dron = new Dron(posicion);
         dron.moverAdelante(posicion);
         assertEquals(posicion, posicionEsperada);
     }
@@ -82,7 +84,7 @@ public class DronTest {
         System.out.println("girarALaDerecha");
         Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
         Posicion posicionEsperada = new Posicion(0, 0, OrientacionEnum.ORIENTE);
-        Dron dron = new Dron(posicion);
+        Vehiculo dron = new Dron(posicion);
         dron.girarALaDerecha(posicion);
         assertEquals(posicion, posicionEsperada);
     }
@@ -95,7 +97,7 @@ public class DronTest {
         System.out.println("girarALaIzquierda");
         Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
         Posicion posicionEsperada = new Posicion(0, 0, OrientacionEnum.OCCIDENTE);
-        Dron dron = new Dron(posicion);
+        Vehiculo dron = new Dron(posicion);
         dron.girarALaIzquierda(posicion);
         assertEquals(posicion, posicionEsperada);
     }

@@ -1,7 +1,7 @@
 package co.s4n.dron.business;
 
 import co.s4n.dron.constants.ConstantesDron;
-import co.s4n.dron.model.Dron;
+import co.s4n.dron.model.Vehiculo;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,54 +9,54 @@ import java.io.PrintWriter;
 import org.apache.log4j.Logger;
 
 /**
- * Clase encargada de operar el Dron
+ * Clase encargada de operar el Vehiculo
  *
  * @author Wilson Alzate Calderón
  */
-public class OperadorDron {
+public class OperadorVehiculo {
 
     /**
-     * El dron que el operador va a manejar
+     * El vehiculo que el operador va a manejar
      */
-    private Dron dron;
+    private Vehiculo vehiculo;
     /**
      * Instancia del Logger para almacenar la bitácora
      */
-    private final static Logger LOGGER = Logger.getLogger(OperadorDron.class);
+    private final static Logger LOGGER = Logger.getLogger(OperadorVehiculo.class);
 
     /**
      * Método constructor que permite la inyección de dependencias
      *
-     * @param dron El dron que se va a operar
+     * @param vehiculo El vehiculo que se va a operar
      */
-    public OperadorDron(Dron dron) {
-        this.dron = dron;
+    public OperadorVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     /**
-     * Método que retorna el dron que se va a operar
+     * Método que retorna el vehiculo que se va a operar
      *
-     * @return el dron que se va a operar
+     * @return el vehiculo que se va a operar
      */
-    public Dron getDron() {
-        return dron;
+    public Vehiculo getVehiculo() {
+        return vehiculo;
     }
 
     /**
-     * Método que modifica el dron que se va a operar
+     * Método que modifica el vehiculo que se va a operar
      *
-     * @param dron el nuevo dron que se va a operar
+     * @param vehiculo el nuevo vehiculo que se va a operar
      */
-    public void setDron(Dron dron) {
-        this.dron = dron;
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     /**
-     * Método que dado un String con una serie de indicaciones opera el Dron
+     * Método que dado un String con una serie de indicaciones opera el Vehiculo
      *
      * @param indicacion La cadena de caracteres con las indicaciones para
-     * operar el dron
-     * @return un String con la posición final del dron en el formato del
+     * operar el vehiculo
+     * @return un String con la posición final del vehiculo en el formato del
      * reporte
      */
     public String operar(String indicacion) {
@@ -64,25 +64,25 @@ public class OperadorDron {
         for (char ch : indicacion.toCharArray()) {
             switch (ch) {
                 case 'A':
-                    dron.moverAdelante(dron.getPosicion());
+                    vehiculo.moverAdelante(vehiculo.getPosicion());
                     break;
                 case 'I':
-                    dron.girarALaIzquierda(dron.getPosicion());
+                    vehiculo.girarALaIzquierda(vehiculo.getPosicion());
                     break;
                 case 'D':
-                    dron.girarALaDerecha(dron.getPosicion());
+                    vehiculo.girarALaDerecha(vehiculo.getPosicion());
                     break;
                 default:
                     break;
             }
-            resultado = dron.getPosicion().toString();
+            resultado = vehiculo.getPosicion().toString();
             LOGGER.debug(resultado);
         }
         return resultado;
     }
 
     /**
-     * Método que lee un archivo de entrada con las indicaciones del dron y
+     * Método que lee un archivo de entrada con las indicaciones del vehiculo y
      * escribe las posiciones finales de cada entrega en el formato del reporte
      *
      * @param archivoIndicaciones la ruta del archivo de entrada

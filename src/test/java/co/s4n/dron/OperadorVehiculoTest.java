@@ -1,9 +1,10 @@
 package co.s4n.dron;
 
-import co.s4n.dron.business.OperadorDron;
-import co.s4n.dron.model.Posicion;
-import co.s4n.dron.model.Dron;
+import co.s4n.dron.business.OperadorVehiculo;
+import co.s4n.dron.model.impl.Posicion;
+import co.s4n.dron.model.impl.Dron;
 import co.s4n.dron.enums.OrientacionEnum;
+import co.s4n.dron.model.Vehiculo;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,17 +18,17 @@ import static org.junit.Assert.*;
  *
  * @author Wilson Alzate Calderón
  */
-public class OperadorDronTest {
+public class OperadorVehiculoTest {
 
     /**
      * Instancia del Logger para almacenar la bitácora
      */
-    final static Logger LOGGER = Logger.getLogger(OperadorDronTest.class);
+    final static Logger LOGGER = Logger.getLogger(OperadorVehiculoTest.class);
 
     /**
      * Constructor de la clase
      */
-    public OperadorDronTest() {
+    public OperadorVehiculoTest() {
     }
 
     /**
@@ -67,8 +68,8 @@ public class OperadorDronTest {
     public void operarPrimerDomicilio() {
         LOGGER.info("operarPrimerDomicilio");
         Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
-        Dron dron = new Dron(posicion);
-        OperadorDron operadorDron = new OperadorDron(dron);
+        Vehiculo dron = new Dron(posicion);
+        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
         String resultado = operadorDron.operar("AAAAIAAD");
         assertEquals(resultado, "(-2, 4) dirección Norte");
     }
@@ -84,8 +85,8 @@ public class OperadorDronTest {
     public void operarSegundoDomicilioEnunciadoErroneo() {
         LOGGER.info("operarSegundoDomicilioEnunciadoErroneo");
         Posicion posicion = new Posicion(-2, 4, OrientacionEnum.NORTE);
-        Dron dron = new Dron(posicion);
-        OperadorDron operadorDron = new OperadorDron(dron);
+        Vehiculo dron = new Dron(posicion);
+        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
         String resultado = operadorDron.operar("DDAIAD");
         assertEquals(resultado, "(-3, 3) dirección Sur");
     }
@@ -100,8 +101,8 @@ public class OperadorDronTest {
     public void operarSegundoDomicilio() {
         LOGGER.info("operarSegundoDomicilio");
         Posicion posicion = new Posicion(-2, 4, OrientacionEnum.NORTE);
-        Dron dron = new Dron(posicion);
-        OperadorDron operadorDron = new OperadorDron(dron);
+        Vehiculo dron = new Dron(posicion);
+        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
         String resultado = operadorDron.operar("DDAIAD");
         assertEquals(resultado, "(-1, 3) dirección Sur");
     }
@@ -117,8 +118,8 @@ public class OperadorDronTest {
     public void operarTercerDomicilioEnunciadoErroneo() {
         LOGGER.info("operarTercerDomicilioEnunciadoErroneo");
         Posicion posicion = new Posicion(-3, 3, OrientacionEnum.SUR);
-        Dron dron = new Dron(posicion);
-        OperadorDron operadorDron = new OperadorDron(dron);
+        Vehiculo dron = new Dron(posicion);
+        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
         String resultado = operadorDron.operar("AAIADAD");
         assertEquals(resultado, "(-4, 2) dirección Oriente");
     }
@@ -132,8 +133,8 @@ public class OperadorDronTest {
     public void operarTercerDomicilio() {
         LOGGER.info("operarTercerDomicilio");
         Posicion posicion = new Posicion(-3, 3, OrientacionEnum.SUR);
-        Dron dron = new Dron(posicion);
-        OperadorDron operadorDron = new OperadorDron(dron);
+        Vehiculo dron = new Dron(posicion);
+        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
         String resultado = operadorDron.operar("AAIADAD");
         assertEquals(resultado, "(-2, 0) dirección Occidente");
     }
@@ -148,8 +149,8 @@ public class OperadorDronTest {
     public void testLeerYProcesarIndicacionesEnunciadoErroneo() {
         LOGGER.info("operarTercerDomicilio");
         Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
-        Dron dron = new Dron(posicion);
-        OperadorDron operadorDron = new OperadorDron(dron);
+        Vehiculo dron = new Dron(posicion);
+        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
         String resultado = operadorDron.leerYProcesarIndicaciones("inTest.txt", "outTest.txt");
         String esperado = "== Reporte de entregas ==\n"
                 + "(-2, 4) dirección Norte\n"
@@ -168,8 +169,8 @@ public class OperadorDronTest {
     public void testLeerYProcesarIndicaciones() {
         LOGGER.info("operarTercerDomicilio");
         Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
-        Dron dron = new Dron(posicion);
-        OperadorDron operadorDron = new OperadorDron(dron);
+        Vehiculo dron = new Dron(posicion);
+        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
         String resultado = operadorDron.leerYProcesarIndicaciones("inTest.txt", "outTest.txt");
         String esperado = "== Reporte de entregas ==\n"
                 + "(-2, 4) dirección Norte\n"
