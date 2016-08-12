@@ -4,6 +4,7 @@ import co.s4n.dron.business.OperadorVehiculo;
 import co.s4n.dron.model.impl.Posicion;
 import co.s4n.dron.model.impl.Dron;
 import co.s4n.dron.enums.OrientacionEnum;
+import co.s4n.dron.exception.NumeroCuadrasALaRedondaException;
 import co.s4n.dron.model.Vehiculo;
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -46,7 +47,8 @@ public class OperadorVehiculoTest {
     }
 
     /**
-     * Método para establecimiento inicial de variables a nivel de caso de prueba
+     * Método para establecimiento inicial de variables a nivel de caso de
+     * prueba
      */
     @Before
     public void setUp() {
@@ -67,11 +69,16 @@ public class OperadorVehiculoTest {
     @Test
     public void operarPrimerDomicilio() {
         LOGGER.info("operarPrimerDomicilio");
-        Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
-        Vehiculo dron = new Dron(posicion);
-        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
-        String resultado = operadorDron.operar("AAAAIAAD");
-        assertEquals(resultado, "(-2, 4) dirección Norte");
+        try {
+            Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
+            Vehiculo dron = new Dron(posicion);
+            OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
+            String resultado = operadorDron.operar("AAAAIAAD");
+            assertEquals(resultado, "(-2, 4) dirección Norte");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+
     }
 
     /**
@@ -84,11 +91,15 @@ public class OperadorVehiculoTest {
     @Test
     public void operarSegundoDomicilioEnunciadoErroneo() {
         LOGGER.info("operarSegundoDomicilioEnunciadoErroneo");
-        Posicion posicion = new Posicion(-2, 4, OrientacionEnum.NORTE);
-        Vehiculo dron = new Dron(posicion);
-        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
-        String resultado = operadorDron.operar("DDAIAD");
-        assertEquals(resultado, "(-3, 3) dirección Sur");
+        try {
+            Posicion posicion = new Posicion(-2, 4, OrientacionEnum.NORTE);
+            Vehiculo dron = new Dron(posicion);
+            OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
+            String resultado = operadorDron.operar("DDAIAD");
+            assertEquals(resultado, "(-3, 3) dirección Sur");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     /**
@@ -100,11 +111,16 @@ public class OperadorVehiculoTest {
     @Test
     public void operarSegundoDomicilio() {
         LOGGER.info("operarSegundoDomicilio");
-        Posicion posicion = new Posicion(-2, 4, OrientacionEnum.NORTE);
-        Vehiculo dron = new Dron(posicion);
-        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
-        String resultado = operadorDron.operar("DDAIAD");
-        assertEquals(resultado, "(-1, 3) dirección Sur");
+        try {
+            Posicion posicion = new Posicion(-2, 4, OrientacionEnum.NORTE);
+            Vehiculo dron = new Dron(posicion);
+            OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
+            String resultado = operadorDron.operar("DDAIAD");
+            assertEquals(resultado, "(-1, 3) dirección Sur");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+
     }
 
     /**
@@ -117,11 +133,16 @@ public class OperadorVehiculoTest {
     @Test
     public void operarTercerDomicilioEnunciadoErroneo() {
         LOGGER.info("operarTercerDomicilioEnunciadoErroneo");
-        Posicion posicion = new Posicion(-3, 3, OrientacionEnum.SUR);
-        Vehiculo dron = new Dron(posicion);
-        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
-        String resultado = operadorDron.operar("AAIADAD");
-        assertEquals(resultado, "(-4, 2) dirección Oriente");
+        try {
+            Posicion posicion = new Posicion(-3, 3, OrientacionEnum.SUR);
+            Vehiculo dron = new Dron(posicion);
+            OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
+            String resultado = operadorDron.operar("AAIADAD");
+            assertEquals(resultado, "(-4, 2) dirección Oriente");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+
     }
 
     /**
@@ -132,51 +153,102 @@ public class OperadorVehiculoTest {
     @Test
     public void operarTercerDomicilio() {
         LOGGER.info("operarTercerDomicilio");
-        Posicion posicion = new Posicion(-3, 3, OrientacionEnum.SUR);
-        Vehiculo dron = new Dron(posicion);
-        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
-        String resultado = operadorDron.operar("AAIADAD");
-        assertEquals(resultado, "(-2, 0) dirección Occidente");
+        try {
+            Posicion posicion = new Posicion(-3, 3, OrientacionEnum.SUR);
+            Vehiculo dron = new Dron(posicion);
+            OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
+            String resultado = operadorDron.operar("AAIADAD");
+            assertEquals(resultado, "(-2, 0) dirección Occidente");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+
     }
 
     /**
      * Prueba completa de las tres entregas, se lee del archivo inTest.txt y se
      * escribe en el archivo outTest.txt. En este caso se evalúa la concordancia
-     * con las entradas y salidas propuestas por el enunciado. Dado que en el caso
-     * 2 y 3 se considera que son erradas por eso la prueba falla.
+     * con las entradas y salidas propuestas por el enunciado. Dado que en el
+     * caso 2 y 3 se considera que son erradas por eso la prueba falla.
      */
     @Test
     public void testLeerYProcesarIndicacionesEnunciadoErroneo() {
         LOGGER.info("operarTercerDomicilio");
-        Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
-        Vehiculo dron = new Dron(posicion);
-        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
-        String resultado = operadorDron.leerYProcesarIndicaciones("inTest.txt", "outTest.txt");
-        String esperado = "== Reporte de entregas ==\n"
-                + "(-2, 4) dirección Norte\n"
-                + "(-3, 3) dirección Sur\n"
-                + "(-4, 2) dirección Oriente\n";        
-        assertEquals(resultado, esperado);
+        try {
+            Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
+            Vehiculo dron = new Dron(posicion);
+            OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
+            String resultado = operadorDron.leerYProcesarIndicaciones("inTest.txt", "outTest.txt");
+            String esperado = "== Reporte de entregas ==\n"
+                    + "(-2, 4) dirección Norte\n"
+                    + "(-3, 3) dirección Sur\n"
+                    + "(-4, 2) dirección Oriente\n";
+            assertEquals(resultado, esperado);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+
     }
 
     /**
-     * Prueba completa con las tres entregas del dron, se lee de archivo inTest.txt y se
-     * escribe en el archivo outTest.txt. En este caso se toman las salidas
-     * que se consideran correctas en contraposición de lo que el enunciado 
-     * establece.
+     * Prueba completa con las tres entregas del dron, se lee de archivo
+     * inTest.txt y se escribe en el archivo outTest.txt. En este caso se toman
+     * las salidas que se consideran correctas en contraposición de lo que el
+     * enunciado establece.
      */
     @Test
     public void testLeerYProcesarIndicaciones() {
         LOGGER.info("operarTercerDomicilio");
-        Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
-        Vehiculo dron = new Dron(posicion);
-        OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
-        String resultado = operadorDron.leerYProcesarIndicaciones("inTest.txt", "outTest.txt");
-        String esperado = "== Reporte de entregas ==\n"
-                + "(-2, 4) dirección Norte\n"
-                + "(-1, 3) dirección Sur\n"
-                + "(0, 0) dirección Occidente\n";        
-        assertEquals(resultado, esperado);
+        try {
+            Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
+            Vehiculo dron = new Dron(posicion);
+            OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
+            String resultado = operadorDron.leerYProcesarIndicaciones("inTest.txt", "outTest.txt");
+            String esperado = "== Reporte de entregas ==\n"
+                    + "(-2, 4) dirección Norte\n"
+                    + "(-1, 3) dirección Sur\n"
+                    + "(0, 0) dirección Occidente\n";
+            assertEquals(resultado, esperado);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    /**
+     * Prueba unitaria que valida si se está sobrepasando el número de cuadras a
+     * la redonda en donde se van a realizar entregas
+     */
+    @Test
+    public void testNumeroDeCuadrasALaRedondaExcedidoNorte() {
+        LOGGER.info("testNumeroDeCuadrasALaRedondaExcedido");
+        try {
+            Posicion posicion = new Posicion(0, 9, OrientacionEnum.NORTE);
+            Vehiculo dron = new Dron(posicion);
+            OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
+            operadorDron.operar("AAAA");
+        } catch (Exception e) {
+            assertTrue(e instanceof NumeroCuadrasALaRedondaException);
+        }
+    }
+
+    /**
+     * Prueba unitaria que valida si se está sobrepasando el número de cuadras a
+     * la redonda en donde se van a realizar entregas Para la primera entrega
+     * del proyecto, “Su corrientazo domicilio”, ha decidido que sólo entregará
+     * domicilios a 10 cuadras a la redonda de su barrio, el cual puede ser
+     * representado con un plano cartesiano.
+     */
+    @Test
+    public void testNumeroDeCuadrasALaRedondaExcedidoSur() {
+        LOGGER.info("testNumeroDeCuadrasALaRedondaExcedido");
+        try {
+            Posicion posicion = new Posicion(0, 2, OrientacionEnum.NORTE);
+            Vehiculo dron = new Dron(posicion);
+            OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
+            operadorDron.operar("DDAAAAAAAAAAAAAAAAAA");
+        } catch (Exception e) {
+            assertTrue(e instanceof NumeroCuadrasALaRedondaException);
+        }
     }
 
 }

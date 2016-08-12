@@ -1,7 +1,9 @@
 package co.s4n.dron.business;
 
 import co.s4n.dron.constants.ConstantesDron;
+import co.s4n.dron.exception.NumeroCuadrasALaRedondaException;
 import co.s4n.dron.model.Vehiculo;
+import co.s4n.dron.model.impl.Posicion;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -58,8 +60,10 @@ public class OperadorVehiculo {
      * operar el vehiculo
      * @return un String con la posición final del vehiculo en el formato del
      * reporte
+     * @throws java.lang.Exception si se supera el número de cuadras para
+     * entrega
      */
-    public String operar(String indicacion) {
+    public String operar(String indicacion) throws Exception {
         String resultado = null;
         for (char ch : indicacion.toCharArray()) {
             switch (ch) {
@@ -75,8 +79,33 @@ public class OperadorVehiculo {
                 default:
                     break;
             }
+            if (!validarPosicion(vehiculo.getPosicion())) {
+                throw new NumeroCuadrasALaRedondaException();
+            }
             resultado = vehiculo.getPosicion().toString();
             LOGGER.debug(resultado);
+        }
+        return resultado;
+    }
+
+    /**
+     * Método para cumplir con la restricción: Para la primera entrega del
+     * proyecto, “Su corrientazo domicilio”, ha decidido que sólo entregará
+     * domicilios a 10 cuadras a la redonda de su barrio, el cual puede ser
+     * representado con un plano cartesiano.
+     *
+     * @param posicion La posición en la cual se encuentra el Dron
+     * @return verdadero si se cumple que el dron se encuentre a 10 cuadras a la
+     * redonda false en caso contrario
+     */
+    private boolean validarPosicion(Posicion posicion) {
+        boolean resultado = true;
+        if (posicion.getCoordenadaX() > ConstantesDron.NUMERO_CUADRAS_A_LA_REDONDA
+                || posicion.getCoordenadaX() < -ConstantesDron.NUMERO_CUADRAS_A_LA_REDONDA) {
+            resultado = false;
+        } else if (posicion.getCoordenadaY() > ConstantesDron.NUMERO_CUADRAS_A_LA_REDONDA
+                || posicion.getCoordenadaY() < -ConstantesDron.NUMERO_CUADRAS_A_LA_REDONDA) {
+            resultado = false;
         }
         return resultado;
     }
@@ -89,7 +118,7 @@ public class OperadorVehiculo {
      * @param archivoReporte la ruta del archivo de salida
      * @return Un String con el contenido del reporte de salida
      */
-    public String leerYProcesarIndicaciones(String archivoIndicaciones, String archivoReporte) {
+    public String leerYProcesarIndicaciones(String archivoIndicaciones, String archivoReporte) throws Exception {
         //Inicialización de variables
         String resultado = "";
         BufferedReader reader = null;

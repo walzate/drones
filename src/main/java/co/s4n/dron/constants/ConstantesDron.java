@@ -33,5 +33,9 @@ public class ConstantesDron {
      * salida
      */
     public static final String RUTA_ARCHIVO_SALIDA = "out.txt";
+    /**
+     * Máximo número de cuadras a la redonda en donde el dron entregará pedidos
+     */
+    public static final int NUMERO_CUADRAS_A_LA_REDONDA = 10;
 
 }
