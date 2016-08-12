@@ -38,7 +38,7 @@ public class Posicion {
 
     /**
      * Método que retorna la coordenada X de la posición del dron
-     * 
+     *
      * @return la coordenada X de la posición del dron
      */
     public int getCoordenadaX() {
@@ -47,7 +47,7 @@ public class Posicion {
 
     /**
      * Método que modifica la coordenada X de la posición del dron
-     * 
+     *
      * @param coordenadaX la nueva coordenada X de la posición del dron
      */
     public void setCoordenadaX(int coordenadaX) {
@@ -56,7 +56,7 @@ public class Posicion {
 
     /**
      * Método que retorna la coordenada Y de la posición del dron
-     * 
+     *
      * @return la coordenada Y de la posición del dron
      */
     public int getCoordenadaY() {
@@ -65,7 +65,7 @@ public class Posicion {
 
     /**
      * Método que modifica la coordenada Y de la posición del dron
-     * 
+     *
      * @param coordenadaY la nueva coordenada Y de la posición del dron
      */
     public void setCoordenadaY(int coordenadaY) {
@@ -74,7 +74,7 @@ public class Posicion {
 
     /**
      * Método que retorna la orientación del dron
-     * 
+     *
      * @return la orientación del dron
      */
     public OrientacionEnum getOrientacionEnum() {
@@ -83,7 +83,7 @@ public class Posicion {
 
     /**
      * Método que modifica la orientación del dron
-     * 
+     *
      * @param orientacionEnum la nueva orientación del dron
      */
     public void setOrientacionEnum(OrientacionEnum orientacionEnum) {
@@ -101,8 +101,16 @@ public class Posicion {
     public String toString() {
         String result = "(" + coordenadaX + ", " + coordenadaY + ") dirección " + orientacionEnum.toString();
         return result;
-    }   
+    }
 
+    /**
+     * Método que sobreescribe la comparación entre posiciones para ahora
+     * comparar por el estado del objeto.
+     *
+     * @param obj El objeto con el cual se va a comparar
+     * @return true si los objetos tienen el mismo estado, false en caso
+     * contrario
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -126,8 +134,5 @@ public class Posicion {
         }
         return true;
     }
-    
-    
-    
-    
+
 }

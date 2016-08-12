@@ -109,6 +109,14 @@ public class Dron {
         }
     }   
 
+    /**
+     * Método que sobreescribe la comparación entre drones para ahora
+     * comparar por el estado del objeto.
+     *
+     * @param obj El objeto con el cual se va a comparar
+     * @return true si los objetos tienen el mismo estado, false en caso
+     * contrario
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
