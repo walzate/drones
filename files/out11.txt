@@ -1,0 +1,11 @@
+== Reporte de entregas ==
+(8, -6) dirección Sur
+(7, -5) dirección Norte
+(6, -2) dirección Oriente
+(10, 0) dirección Oriente
+(9, -1) dirección Occidente
+(6, -2) dirección Norte
+(4, 2) dirección Norte
+(5, 1) dirección Sur
+(6, -2) dirección Occidente
+(2, -4) dirección Occidente
