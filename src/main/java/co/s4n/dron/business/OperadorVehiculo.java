@@ -158,7 +158,7 @@ public class OperadorVehiculo {
             //Se escribe en el archivo el encabezado del reporte
             writer.println(ConstantesDron.ENCABEZADO_REPORTE);
 
-            int contadorAlmuerzos = 0;
+            int contadorAlmuerzos = 1;
 
             //Lectura línea a línea del archivo
             while ((lineaDeInstrucciones = reader.readLine()) != null) {
