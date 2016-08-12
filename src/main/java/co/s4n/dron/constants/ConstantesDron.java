@@ -37,5 +37,10 @@ public class ConstantesDron {
      * Máximo número de cuadras a la redonda en donde el dron entregará pedidos
      */
     public static final int NUMERO_CUADRAS_A_LA_REDONDA = 10;
+    /**
+     * Es importante aclarar que el dron es sólo capaz de cargar hasta tres
+     * almuerzos por vez.
+     */
+    public static final int CAPACIDAD_ALMUERZOS = 3;
 
 }

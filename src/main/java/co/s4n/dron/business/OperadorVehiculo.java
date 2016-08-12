@@ -1,6 +1,7 @@
 package co.s4n.dron.business;
 
 import co.s4n.dron.constants.ConstantesDron;
+import co.s4n.dron.exception.CapacidadAlmuerzosException;
 import co.s4n.dron.exception.NumeroCuadrasALaRedondaException;
 import co.s4n.dron.model.Vehiculo;
 import co.s4n.dron.model.impl.Posicion;
@@ -135,8 +136,14 @@ public class OperadorVehiculo {
             //Se escribe en el archivo el encabezado del reporte
             writer.println(ConstantesDron.ENCABEZADO_REPORTE);
 
+            int contadorAlmuerzos = 0;
+            
             //Lectura línea a línea del archivo
             while ((lineaDeInstrucciones = reader.readLine()) != null) {
+                //Es importante aclarar que el dron es sólo capaz de cargar hasta tres almuerzos por vez.
+                if (contadorAlmuerzos > ConstantesDron.CAPACIDAD_ALMUERZOS){
+                    throw new CapacidadAlmuerzosException();
+                }
                 LOGGER.debug(lineaDeInstrucciones);
                 //Se operan las instrucciones obtenidas en la linea
                 String posicionFinal = operar(lineaDeInstrucciones);
@@ -144,6 +151,8 @@ public class OperadorVehiculo {
                 resultado = resultado + posicionFinal + ConstantesDron.SALTO_LINEA;
                 //Se escribe el resultado de la operación en el reporte
                 writer.println(posicionFinal);
+                
+                contadorAlmuerzos ++;
             }
         } catch (IOException e) {
             LOGGER.error(e.getMessage());

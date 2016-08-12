@@ -4,6 +4,7 @@ import co.s4n.dron.business.OperadorVehiculo;
 import co.s4n.dron.model.impl.Posicion;
 import co.s4n.dron.model.impl.Dron;
 import co.s4n.dron.enums.OrientacionEnum;
+import co.s4n.dron.exception.CapacidadAlmuerzosException;
 import co.s4n.dron.exception.NumeroCuadrasALaRedondaException;
 import co.s4n.dron.model.Vehiculo;
 import org.apache.log4j.Logger;
@@ -67,7 +68,7 @@ public class OperadorVehiculoTest {
      * terminando en (-2, 4) dirección Norte
      */
     @Test
-    public void operarPrimerDomicilio() {
+    public void testOperarPrimerDomicilio() {
         LOGGER.info("operarPrimerDomicilio");
         try {
             Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
@@ -89,7 +90,7 @@ public class OperadorVehiculoTest {
      * DDAIAD propuestas en el enunciado.
      */
     @Test
-    public void operarSegundoDomicilioEnunciadoErroneo() {
+    public void testOperarSegundoDomicilioEnunciadoErroneo() {
         LOGGER.info("operarSegundoDomicilioEnunciadoErroneo");
         try {
             Posicion posicion = new Posicion(-2, 4, OrientacionEnum.NORTE);
@@ -109,7 +110,7 @@ public class OperadorVehiculoTest {
      * Sur
      */
     @Test
-    public void operarSegundoDomicilio() {
+    public void testOperarSegundoDomicilio() {
         LOGGER.info("operarSegundoDomicilio");
         try {
             Posicion posicion = new Posicion(-2, 4, OrientacionEnum.NORTE);
@@ -131,7 +132,7 @@ public class OperadorVehiculoTest {
      * Occidente.
      */
     @Test
-    public void operarTercerDomicilioEnunciadoErroneo() {
+    public void testOperarTercerDomicilioEnunciadoErroneo() {
         LOGGER.info("operarTercerDomicilioEnunciadoErroneo");
         try {
             Posicion posicion = new Posicion(-3, 3, OrientacionEnum.SUR);
@@ -151,7 +152,7 @@ public class OperadorVehiculoTest {
      * instrucciones AAIADAD se llega a (-2, 0) dirección Occidente.
      */
     @Test
-    public void operarTercerDomicilio() {
+    public void testOperarTercerDomicilio() {
         LOGGER.info("operarTercerDomicilio");
         try {
             Posicion posicion = new Posicion(-3, 3, OrientacionEnum.SUR);
@@ -248,6 +249,23 @@ public class OperadorVehiculoTest {
             operadorDron.operar("DDAAAAAAAAAAAAAAAAAA");
         } catch (Exception e) {
             assertTrue(e instanceof NumeroCuadrasALaRedondaException);
+        }
+    }
+
+    /**
+     * Prueba unitaria para validar: Es importante aclarar que el dron es sólo
+     * capaz de cargar hasta tres almuerzos por vez.
+     */
+    @Test
+    public void testCapacidadAlmuerzosExcedida() {
+        LOGGER.info("testCapacidadAlmuerzosExcedida");
+        try {
+            Posicion posicion = new Posicion(0, 0, OrientacionEnum.NORTE);
+            Vehiculo dron = new Dron(posicion);
+            OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
+            operadorDron.leerYProcesarIndicaciones("inCapacidadExcedida.txt", "outTest.txt");
+        } catch (Exception e) {
+            assertTrue(e instanceof CapacidadAlmuerzosException);
         }
     }
 
