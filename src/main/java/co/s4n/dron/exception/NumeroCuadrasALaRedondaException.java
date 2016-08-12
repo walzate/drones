@@ -33,5 +33,6 @@ public class NumeroCuadrasALaRedondaException extends Exception {
      * Constructor por defecto
      */
     public NumeroCuadrasALaRedondaException() {
+        super(MENSAJE);
     }
 }

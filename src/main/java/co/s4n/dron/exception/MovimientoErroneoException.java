@@ -27,5 +27,6 @@ public class MovimientoErroneoException extends Exception {
      * Constructor por defecto
      */
     public MovimientoErroneoException() {
+        super(MENSAJE);
     }
 }

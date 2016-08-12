@@ -33,5 +33,6 @@ public class CapacidadAlmuerzosException extends Exception {
      * Constructor por defecto
      */
     public CapacidadAlmuerzosException() {
+        super(MENSAJE);
     }
 }
