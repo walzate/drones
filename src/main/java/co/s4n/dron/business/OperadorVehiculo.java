@@ -11,6 +11,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.concurrent.CyclicBarrier;
 import org.apache.log4j.Logger;
 
 /**
@@ -18,7 +20,7 @@ import org.apache.log4j.Logger;
  *
  * @author Wilson Alzate Calderón
  */
-public class OperadorVehiculo {
+public class OperadorVehiculo extends Thread {
 
     /**
      * El vehiculo que el operador va a manejar
@@ -28,6 +30,18 @@ public class OperadorVehiculo {
      * Instancia del Logger para almacenar la bitácora
      */
     private final static Logger LOGGER = Logger.getLogger(OperadorVehiculo.class);
+    /**
+     * Ruta del archivo con las indicaciones para el vehiculo
+     */
+    private String archivoIndicaciones;
+    /**
+     * Ruta donde con el reporte
+     */
+    private String archivoReporte;
+    /**
+     * Controlador para poder ejecutar todos los threads en simultánea
+     */
+    private CyclicBarrier gate;
 
     /**
      * Método constructor que permite la inyección de dependencias
@@ -36,6 +50,21 @@ public class OperadorVehiculo {
      */
     public OperadorVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
+    }
+    
+    /**
+     * Constructor con las rutas de los archivos
+     *
+     * @param vehiculo El vehiculo a operar
+     * @param archivoIndicaciones Ruta del archivo con las indicaciones para el
+     * vehiculo
+     * @param archivoReporte Ruta donde con el reporte
+     */
+    public OperadorVehiculo(Vehiculo vehiculo, String archivoIndicaciones, String archivoReporte, CyclicBarrier gate) {
+        this.vehiculo = vehiculo;
+        this.archivoIndicaciones = archivoIndicaciones;
+        this.archivoReporte = archivoReporte;
+        this.gate = gate;
     }
 
     /**
@@ -71,7 +100,7 @@ public class OperadorVehiculo {
         for (char ch : indicacion.toCharArray()) {
 
             MovimientoEnum movimiento = convertirAMovimientoEnum(ch);
-            
+
             switch (movimiento) {
                 case A:
                     vehiculo.moverAdelante(vehiculo.getPosicion());
@@ -95,8 +124,9 @@ public class OperadorVehiculo {
     }
 
     /**
-     * Método utilizado para convertir un caracter a un movimiento enum. Se valida
-     * si el caracter corresponde a los movimientos permitidos
+     * Método utilizado para convertir un caracter a un movimiento enum. Se
+     * valida si el caracter corresponde a los movimientos permitidos
+     *
      * @param ch El caracter con el movimiento
      * @return Un objeto de tipo MovimientoEnum
      * @throws Exception Si no corresponde a los movimientos permitidos
@@ -140,8 +170,9 @@ public class OperadorVehiculo {
      * @param archivoIndicaciones la ruta del archivo de entrada
      * @param archivoReporte la ruta del archivo de salida
      * @return Un String con el contenido del reporte de salida
+     * @throws java.lang.Exception
      */
-    public String leerYProcesarIndicaciones(String archivoIndicaciones, String archivoReporte) throws Exception {
+    public synchronized String leerYProcesarIndicaciones(String archivoIndicaciones, String archivoReporte) throws Exception {
         //Inicialización de variables
         String resultado = "";
         BufferedReader reader = null;
@@ -192,5 +223,22 @@ public class OperadorVehiculo {
             }
         }
         return resultado;
+    }
+
+    /**
+     * Método que sobreescribe la ejecución del thread
+     */
+    @Override
+    public void run() {        
+        try {
+            //Permite que cada thread espere a los demás
+            gate.await();
+            //Monitoreo para revisar que todos los threads se ejecuten al tiempo
+            LOGGER.debug(getName()+": "+(new Date()));
+            //Ejecución de los procesos
+            leerYProcesarIndicaciones(archivoIndicaciones, archivoReporte);
+        } catch (Exception ex) {
+            LOGGER.error(ex);
+        }        
     }
 }
