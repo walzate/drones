@@ -1,5 +1,5 @@
-# Drones para domicilios.
-Aplicación para solucionar la prueba Técnica JVM para la empresa S4N.
+# Drones para domicilios, segunda parte.
+Aplicación para solucionar la segunda parte de la prueba Técnica JVM para la empresa S4N.
 # Nombres
 Wilson Alzate Calderón
 # Instrucciones de ejecución
