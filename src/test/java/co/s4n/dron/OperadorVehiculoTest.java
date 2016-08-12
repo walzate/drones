@@ -228,6 +228,7 @@ public class OperadorVehiculoTest {
             Vehiculo dron = new Dron(posicion);
             OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
             operadorDron.operar("AAAA");
+            fail();
         } catch (Exception e) {
             assertTrue(e instanceof NumeroCuadrasALaRedondaException);
         }
@@ -248,9 +249,10 @@ public class OperadorVehiculoTest {
             Vehiculo dron = new Dron(posicion);
             OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
             operadorDron.operar("DDAAAAAAAAAAAAAAAAAA");
+            fail();
         } catch (Exception e) {
             assertTrue(e instanceof NumeroCuadrasALaRedondaException);
-        }
+        }        
     }
 
     /**
@@ -265,9 +267,10 @@ public class OperadorVehiculoTest {
             Vehiculo dron = new Dron(posicion);
             OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
             operadorDron.leerYProcesarIndicaciones("inCapacidadExcedida.txt", "outTest.txt");
+            fail();
         } catch (Exception e) {
             assertTrue(e instanceof CapacidadAlmuerzosException);
-        }
+        }        
     }
     
     /**
@@ -281,9 +284,10 @@ public class OperadorVehiculoTest {
             Vehiculo dron = new Dron(posicion);
             OperadorVehiculo operadorDron = new OperadorVehiculo(dron);
             operadorDron.operar("H");
+            fail();
         } catch (Exception e) {
             assertTrue(e instanceof MovimientoErroneoException);
-        }
+        }        
     }
 
 }
