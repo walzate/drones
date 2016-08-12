@@ -1,5 +1,6 @@
-package co.s4n.dron;
+package co.s4n.dron.business;
 
+import co.s4n.dron.model.Dron;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,7 +8,9 @@ import java.io.PrintWriter;
 import org.apache.log4j.Logger;
 
 /**
- * Created by fawkes on 8/11/16.
+ * Clase encargada de operar el Dron
+ * 
+ * @author Wilson Alzate Calderón
  */
 public class OperadorDron {
 
