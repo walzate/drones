@@ -33,6 +33,8 @@ public class ConstantesDron {
      * salida
      */
     public static final String RUTA_ARCHIVO_SALIDA = "out.txt";
+    
+    public static final String RUTA_DIRECTORIO_ARCHIVOS = "files";
     /**
      * Máximo número de cuadras a la redonda en donde el dron entregará pedidos
      */
@@ -41,6 +43,13 @@ public class ConstantesDron {
      * Es importante aclarar que el dron es sólo capaz de cargar hasta tres
      * almuerzos por vez.
      */
-    public static final int CAPACIDAD_ALMUERZOS = 3;
+    public static final int CAPACIDAD_ALMUERZOS = 10;
+    /**
+     * Con las utilidades que le está dejando su negocio, “Su corrientazo a
+     * domicilio” desea aumentar la capacidad de entregas diarias. Por esta
+     * razón, ha solicitado a S4N que ahora el sistema sea capaz de operar 20
+     * drones diferentes
+     */
+    public static final int NUMERO_DE_DRONES = 20;
 
 }
